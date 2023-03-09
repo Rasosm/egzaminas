@@ -28,6 +28,12 @@ class FrontController extends Controller
             else {
                 $dishes = Dish::where('id', '>', 0);
             }
+            if($request->menu_id && $request->menu_id != 'all'){
+                $menus = Menu::where('menu_id', $request->menu_id);
+            }
+            else {
+                $menus = Menu::where('id', '>', 0);
+            }
                 
           
             
@@ -71,6 +77,7 @@ class FrontController extends Controller
             'restorants' => $restorants,
             'menus' => $menus,
             'restorantShow' => $request->restorant_id ? $request->restorant_id : '',
+            'menuShow' => $request->menu_id ? $request->menu_id : '',
             's' => $request->s ?? ''
             
         ]);

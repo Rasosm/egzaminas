@@ -25,6 +25,10 @@ class Dish extends Model
     {
         return $this->belongsTo(Restorant::class, 'restorant_id', 'id');
     }
+    public function dishMenu()
+    {
+        return $this->belongsTo(Menu::class, 'menu_id', 'id');
+    }
 
     public function deletePhoto()
     {

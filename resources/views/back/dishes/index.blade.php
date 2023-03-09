@@ -168,8 +168,6 @@
                 </div>
 
                 @endforelse
-
-
             </div>
             {{-- @if($perPageShow != 'visi')
         <div class="m-2">

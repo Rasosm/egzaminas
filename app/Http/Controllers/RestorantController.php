@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restorant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class RestorantController extends Controller
 {
@@ -45,7 +46,29 @@ class RestorantController extends Controller
     public function store(Request $request)
     {
         
-    //    
+    $validator = Validator::make(
+        $request->all(),
+        [
+        
+        'restorant_title' => 'required|min:3|max:100|regex:/^([a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s]+){3,}$/',
+        'restorant_code' => 'required|regex:/^[1-9]\d*(\.\d{1,2})?$/',
+        'restorant_address' => 'required|min:3|max:100|string'
+
+        ],
+        [
+            'restorant_title.required' => 'Please enter dish title',
+            'restorant_title.min' => 'Please enter at least 3 characters',
+            'restorant_title.max' => 'Please enter correct dish title. Dish name has too many characters',
+            'dish_title.regex' => 'Please enter correct dish title',
+            'restorant_price.required' => 'Please enter price',
+            'restorant_price.regex' => 'Please enter correct price',
+        ]);
+            
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
+    
 
 
         

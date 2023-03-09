@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -45,7 +46,26 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         
-    //    
+    $validator = Validator::make(
+        $request->all(),
+        [
+        
+        'menu_title' => 'required|min:3|max:100|string',
+        
+
+        ],
+        [
+            'menu_title.required' => 'Please enter menu title',
+            'menu_title.min' => 'Please enter at least 3 characters',
+            'menu_title.max' => 'Please enter correct menu title. Menu name has too many characters',
+            
+        ]);
+            
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
+    
 
 
         
@@ -110,7 +130,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        if(!$menu->restorantDishes()->count()){
+        if(!$menu->menuDishes()->count()){
             $menu->delete();
             return redirect()->route('menus-index');
         }

@@ -119,9 +119,11 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         $restorants = Restorant::all();
+        $menus = Menu::all();
         return view('back.dishes.edit',[
             'dish' => $dish,
-            'restorants' => $restorants
+            'restorants' => $restorants,
+            'menus' => $menus
         ]);
     }
 

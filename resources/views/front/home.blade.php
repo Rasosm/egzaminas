@@ -83,6 +83,20 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6">
+
+                            <div class="mb-3">
+                                <label class="form-label">Select Menu</label>
+                                <select class="form-select" name="menu_id">
+                                    <option value="all">All</option>
+                                    @foreach($menus as $menu)
+                                    <option value="{{$menu->id}}" @if($menu->id == $menuShow) selected @endif>{{$menu->title}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
 
 
                         <div class="col-2 ">
@@ -124,41 +138,20 @@
                                             <div>
                                                 <div class="d-flex justify-content-between">
                                                     <p class="card-title-bold">{{$dish->title}}</p>
-                                                    {{-- <p class="card-title-bold"> {{$dish->rating}}/5</p> --}}
                                                     <p class="card-title-bold"> Price: {{$dish->price}} eur</p>
 
 
                                                 </div>
-                                                <p class="card-title">{{$dish->dishRestorant->title}}</p>
-                                                {{-- <p class="card-title-bold"> Price: {{$dish->price}} eur</p> --}}
-                                                {{-- <p style="font-weight: bold"> Rating: {{$dish->rating}}/5</p>
-                                                <p style="font-weight: bold"> Votes: {{$dish->counts}} </p> --}}
-
-
-
+                                                <p class="card-title">Restaurant: {{$dish->dishRestorant->title}}</p>
+                                                {{-- <p class="card-title">Menu: {{$dish->dishMenu->title}}</p> --}}
 
                                             </div>
 
-
-
-
-
-
-                                            {{-- <p style="font-weight: bold"> Votes: {{$dish->counts}}
-                                            </p> --}}
                                         </div>
-
-
                                     </div>
-                                    <div class="d-flex">
+                                    <div class="d-flex mt-3">
                                         <div class="card-body">
-                                            {{-- <p class="card-title-bold"> Price: {{$dish->price}} eur</p> --}}
-
-                                            {{-- <p style="font-weight: bold"> Rating: {{$dish->rating}}/5</p>
-                                            <p style="font-weight: bold"> Votes: {{$dish->counts}} </p> --}}
                                         </div>
-
-
                                         <div class="buy">
 
                                             <form action="{{route('add-to-cart')}}" method="post">
