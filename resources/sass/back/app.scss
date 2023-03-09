@@ -1,0 +1,251 @@
+// Fonts
+// @import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+@import "@fortawesome/fontawesome-free/css/all.css";
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.mystyle {
+    background-image: url("/public/img/pexels-elle-hughes-1660030.jpg");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.98;
+}
+
+// border-radius: 41px;    // top: 109px;    // min-height: 400px;    // text-align: center;}
+
+.card-list {
+    flex-direction: row;
+
+    .card-header-list {
+        display: flex;
+    }
+
+    .create {
+        font-size: 18px;
+    }
+
+    .card-body-list {
+
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+
+        p {
+            margin-bottom: 0;
+        }
+
+    }
+
+    .card-title {
+        font-size: 16px;
+        // line-height: 1.4;
+        margin: 0;
+        // margin-left: 20px;
+        padding: 1em;
+
+
+    }
+
+    .card-title-bold {
+
+        font-weight: 600;
+        margin-right: 7px;
+
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .card-body {
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+            flex-direction: row;
+        }
+    }
+
+
+}
+
+.title {
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    justify-content: end;
+}
+
+.btn {
+    min-width: 65.97px;
+}
+
+.smallimg {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        width: 150px;
+        height: 150px;
+        border-radius: 20px;
+    }
+}
+
+.img {
+    height: 200px;
+
+    img {
+        display: block;
+        height: 200px;
+        width: auto;
+        border-radius: 30px
+    }
+}
+
+h3 {
+    color: #198753;
+    text-align: center;
+}
+
+.card-cats {
+    text-align: center;
+
+
+}
+
+h3 {
+    a {
+        color: #198753;
+        text-decoration: none;
+    }
+
+}
+
+.list-table-carts {
+    a {
+        text-decoration: none;
+
+        h5 {
+            color: #198753;
+
+        }
+    }
+
+}
+
+
+.order-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-total {
+    font-weight: bold;
+}
+
+.alert {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+footer {
+    margin-top: 40px;
+    font-style: italic;
+    color: #777;
+
+
+    .footer-title {
+        font-style: normal;
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    a {
+        font-size: 13px;
+        // color: black;
+        color: #777;
+
+    }
+}
+
+.footer {
+    background-color: #04091E;
+
+}
+
+.footer-title {
+    font-style: normal;
+    margin-top: 15px;
+    color: #777;
+}
+
+.heading {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.fa-solid {
+    margin-right: 7px;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+
+    a {
+        font-size: 20px;
+    }
+
+}
+
+.socials-icon {
+    text-decoration: none;
+    color: #fff;
+    margin: 10px;
+
+}
+
+.socials-icon:first-child {
+    margin-left: 0px;
+}
+
+.socials-icon:hover {
+    color: var(--bluegradient1);
+}
