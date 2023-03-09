@@ -1,4 +1,4 @@
-{{-- @inject('cart', 'App\Services\CartService') --}}
+@inject('cart', 'App\Services\CartService')
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -47,8 +47,8 @@
                                 Dishes
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                {{-- <a class="dropdown-item" href="{{ route('dishes-index') }}">Dishes List</a>
-                                <a class="dropdown-item" href="{{ route('dishes-create') }}">New Dish</a> --}}
+                                <a class="dropdown-item" href="{{ route('dishes-index') }}">Dishes List</a>
+                                <a class="dropdown-item" href="{{ route('dishes-create') }}">New Dish</a>
                             </div>
                         </li>
 
@@ -57,87 +57,107 @@
                                 Restaurants
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                {{-- <a class="dropdown-item" href="{{ route('restorants-index') }}">Restaurant List</a>
-                                <a class="dropdown-item" href="{{ route('restorants-create') }}">New Restaurant</a> --}}
+                                <a class="dropdown-item" href="{{ route('restorants-index') }}">Restaurant List</a>
+                                <a class="dropdown-item" href="{{ route('restorants-create') }}">New Restaurant</a>
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Menu
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('menus-index') }}">Menu List</a>
+                                <a class="dropdown-item" href="{{ route('menus-create') }}">New Menu</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Orders
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('orders-index') }}">Orders List</a>
+
+                            </div>
+                        </li>
+
+
                         @endif
 
 
                         <!-- Authentication Links -->
-                        {{-- <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a id="cartDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <div class="cart-svg">
                                     <svg class="cart">
                                         <use xlink:href="#cart"></use>
                                     </svg>
                                     <span class="count">{{$cart->count}}</span>
-                        <span class="nav-total">{{$cart->total}} eur </span>
-                </div>
-                </a>
-                <a href="{{route('cart')}}" class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
-                    @forelse($cart->list as $product)
-                    <div class="dropdown-item">
-                        {{$product->title}}
-                        <b>({{$product->count}}) - </b>
+                                    <span class="nav-total">{{$cart->total}} eur </span>
+                                </div>
+                            </a>
+                            <a href="{{route('cart')}}" class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
+                                @forelse($cart->list as $product)
+                                <div class="dropdown-item">
+                                    {{$product->title}}
+                                    <b>({{$product->count}}) - </b>
 
-                        {{$product->sum}} eur
-                    </div>
-                    @empty
-                    <span class="dropdown-item">Empty</span>
-                    @endforelse
-                </a>
-                </li> --}}
+                                    {{$product->sum}} eur
+                                </div>
+                                @empty
+                                <span class="dropdown-item">Empty</span>
+                                @endforelse
+                            </a>
+                        </li>
 
-                @guest
-
-
-
-                @if (Route::has('login'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @endif
-
-                @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
+                        @guest
 
 
-                @else
+
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
 
 
-                <li class="nav-item dropdown">
-                    <a style="color: #F69220" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        @else
 
 
-                        {{ Auth::user()->name }}
-                    </a>
+                        <li class="nav-item dropdown">
+                            <a style="color: #F69220" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                                    {{ __('Logout') }}
+                                </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
 
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-    </div>
-    </nav>
+        </nav>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
     @include('layouts.svg')
 
