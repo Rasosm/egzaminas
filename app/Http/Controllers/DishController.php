@@ -95,7 +95,7 @@ class DishController extends Controller
         $dish->ingridients = $request->dish_ingridients;
 
         $dish->save();
-        return redirect()->route('dishes-index')->with('ok', 'The dish succesfully added');
+        return redirect()->route('dishes-index', ['#'.$dish->id])->with('ok', 'The dish succesfully added');
 
     }
 
