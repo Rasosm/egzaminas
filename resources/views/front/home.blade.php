@@ -83,7 +83,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6">
+                        {{-- <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6">
 
                             <div class="mb-3">
                                 <label class="form-label">Select Menu</label>
@@ -92,98 +92,96 @@
                                     @foreach($menus as $menu)
                                     <option value="{{$menu->id}}" @if($menu->id == $menuShow) selected @endif>{{$menu->title}}</option>
 
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+                --}}
+                <div class="col-2 ">
+                    <div class="head-buttons">
+                        <button type="submit" class="btn btn-outline-success" style="margin-right: 5px; margin-top: 30px">Show</button>
 
-
-
-                        <div class="col-2 ">
-                            <div class="head-buttons">
-                                <button type="submit" class="btn btn-outline-success" style="margin-right: 5px; margin-top: 30px">Show</button>
-
-                                <a href="{{route('start')}}" class="btn btn-outline-success" style="margin-top: 30px">Reset</a>
-                            </div>
-                        </div>
-
+                        <a href="{{route('start')}}" class="btn btn-outline-success" style="margin-top: 30px">Reset</a>
                     </div>
                 </div>
 
+        </div>
+    </div>
 
-            </form>
 
-            <div>
+    </form>
 
-                <div class="container">
-                    <div class="row justify-content-center row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 ">
-                        @forelse($dishes as $dish)
-                        <div class="col-9 front-card">
-                            <div class="list-table">
+    <div>
+
+        <div class="container">
+            <div class="row justify-content-center row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 ">
+                @forelse($dishes as $dish)
+                <div class="col-9 front-card">
+                    <div class="list-table">
+                        <div class="">
+                            <a href="{{route('show-dish', $dish)}}">
+
+                                <div class="smallimg">
+                                    @if($dish->photo)
+                                    <img src="{{asset($dish->photo)}}">
+                                    @else
+                                    <img src="{{asset('/dishes/no.jpg')}}">
+                                    @endif
+                                </div>
+                            </a>
+
+                            <div class="card-header">
                                 <div class="">
-                                    <a href="{{route('show-dish', $dish)}}">
 
-                                        <div class="smallimg">
-                                            @if($dish->photo)
-                                            <img src="{{asset($dish->photo)}}">
-                                            @else
-                                            <img src="{{asset('/dishes/no.jpg')}}">
-                                            @endif
-                                        </div>
-                                    </a>
+                                    <div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="card-title-bold">{{$dish->title}}</p>
+                                            <p class="card-title-bold"> Price: {{$dish->price}} eur</p>
 
-                                    <div class="card-header">
-                                        <div class="">
-
-                                            <div>
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="card-title-bold">{{$dish->title}}</p>
-                                                    <p class="card-title-bold"> Price: {{$dish->price}} eur</p>
-
-
-                                                </div>
-                                                <p class="card-title">Restaurant: {{$dish->dishRestorant->title}}</p>
-                                                {{-- <p class="card-title">Menu: {{$dish->dishMenu->title}}</p> --}}
-
-                                            </div>
 
                                         </div>
+                                        <p class="card-title">Restaurant: {{$dish->dishRestorant->title}}</p>
+                                        {{-- <p class="card-title">Menu: {{$dish->dishMenu->title}}</p> --}}
+
                                     </div>
-                                    <div class="d-flex mt-3">
-                                        <div class="card-body">
+
+                                </div>
+                            </div>
+                            <div class="d-flex mt-3">
+                                <div class="card-body">
+                                </div>
+                                <div class="buy">
+
+                                    <form action="{{route('add-to-cart')}}" method="post">
+                                        <div class="d-flex buy-btn">
+                                            <input class="form-control input-buy" type="number" min="1" max="5" name="count" value="1">
+                                            <input type="hidden" name="product" value="{{$dish->id}}">
+                                            <button type="submit" class="btn btn-outline-primary">Buy</button>
                                         </div>
-                                        <div class="buy">
 
-                                            <form action="{{route('add-to-cart')}}" method="post">
-                                                <div class="d-flex buy-btn">
-                                                    <input class="form-control input-buy" type="number" min="1" max="5" name="count" value="1">
-                                                    <input type="hidden" name="product" value="{{$dish->id}}">
-                                                    <button type="submit" class="btn btn-outline-primary">Buy</button>
-                                                </div>
-
-                                                @csrf
-                                            </form>
-
-                                        </div>
-                                    </div>
+                                        @csrf
+                                    </form>
 
                                 </div>
                             </div>
 
                         </div>
-                        @empty
-                        <div class="list-group-item">No dishes yet</div>
-                        @endforelse
-
                     </div>
-                </div>
-            </div>
-            @if($perPageShow != 'all')
-            <div class="m-2">{{$dishes->links()}}
-            </div>
-            @endif
 
+                </div>
+                @empty
+                <div class="list-group-item">No dishes yet</div>
+                @endforelse
+
+            </div>
         </div>
     </div>
+    @if($perPageShow != 'all')
+    <div class="m-2">{{$dishes->links()}}
+    </div>
+    @endif
 
-    @endsection
+</div>
+</div>
+
+@endsection

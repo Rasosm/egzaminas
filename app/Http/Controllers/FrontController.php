@@ -85,6 +85,13 @@ class FrontController extends Controller
               
     }
 
+    public function showDish(Dish $dish)
+    {
+        return view('front.dish', [
+            'dish' => $dish
+        ]);
+    }
+
     public function addToCart(Request $request, CartService $cart)
     {
         $id = (int) $request->product;
